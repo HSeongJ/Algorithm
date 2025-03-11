@@ -1,1 +1,1 @@
-# BeakJoonHub
+# Algorithm
