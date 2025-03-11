@@ -2,28 +2,26 @@
 
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+int main()
+{
+  ios::sync_with_stdio(0);
+  cin.tie(0);
 
-    int a, b, c, num;
-    int res[10];
+  vector<int> result(10);
+  int A, B, C;
+  cin >> A >> B >> C;
 
-    cin >> a >> b >> c;
+  int mul = A * B * C;
 
-    num = a*b*c;
+  while (mul > 0)
+  {
+    result[mul % 10]++;
 
-    fill(res, res+10, 0);
+    mul /= 10;
+  }
 
-    while(num > 0) {
-        res[num%10]++;
-
-        num /= 10;
-    }
-
-    for(int i = 0; i < 10; i++) {
-        cout << res[i] << '\n';
-    }
-
-    return 0;
+  for (int i = 0; i < result.size(); i++)
+  {
+    cout << result[i] << '\n';
+  }
 }
