@@ -2,36 +2,44 @@
 
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+int main()
+{
+  ios::sync_with_stdio(0);
+  cin.tie(0);
 
-    int n, x, res = 0;
+  int result = 0;
+  int n;
+  cin >> n;
 
-    cin >> n;
+  bool a[1000001] = {};
+  while (n--)
+  {
+    int num;
+    cin >> num;
 
-    vector<int> a(n+1);
+    a[num] = true;
+  }
 
-    int a_x[2000001] = {};
+  int x;
+  cin >> x;
 
-    for(int i = 1; i < a.size(); i++) {
-        cin >> a[i];
+  for (int i = 0; i < 1000001; i++)
+  {
+    if (x <= i)
+      continue;
+    if (abs(x - i) > 1000000)
+      continue;
+    if (i == x - i)
+      continue;
+
+    if (a[i] && a[x - i])
+    {
+      a[i] = false;
+      a[x - i] = false;
+
+      result++;
     }
+  }
 
-    cin >> x;
-
-
-    for(int i = 1; i < a.size(); i++) {
-        if(x-a[i] >= 1) {
-            if(a_x[x-a[i]] == 1) {
-                res++;
-            }
-
-            a_x[a[i]] = 1;
-        }
-    }
-
-    cout << res;
-
-    return 0;
+  cout << result;
 }
