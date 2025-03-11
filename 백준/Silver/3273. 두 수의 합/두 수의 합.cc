@@ -11,7 +11,7 @@ int main()
   int n;
   cin >> n;
 
-  bool a[1000001] = {};
+  vector<bool> a(1000001);
   while (n--)
   {
     int num;
@@ -23,23 +23,9 @@ int main()
   int x;
   cin >> x;
 
-  for (int i = 0; i < 1000001; i++)
-  {
-    if (x <= i)
-      continue;
-    if (abs(x - i) > 1000000)
-      continue;
-    if (i == x - i)
-      continue;
-
+  for (int i = 1; i < (x + 1) / 2; i++)
     if (a[i] && a[x - i])
-    {
-      a[i] = false;
-      a[x - i] = false;
-
       result++;
-    }
-  }
 
   cout << result;
 }
