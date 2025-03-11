@@ -2,25 +2,26 @@
 
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+int main()
+{
+  ios::sync_with_stdio(0);
+  cin.tie(0);
 
-    int N, v, num[201] = {}, input;
+  int N;
+  cin >> N;
 
-    cin >> N;
+  vector<int> arr(201);
 
-    //-100 => 0
-    // 0 => 100
-    // 100 => 200
-    for(int i = 0; i < N; i++) {
-        cin >> input;
-        num[input+100]++;
-    }
+  while (N--)
+  {
+    int n;
+    cin >> n;
 
-    cin >> v;
+    arr[n + 100]++;
+  }
 
-    cout << num[v+100];
+  int v;
+  cin >> v;
 
-    return 0;
+  cout << arr[v + 100];
 }
