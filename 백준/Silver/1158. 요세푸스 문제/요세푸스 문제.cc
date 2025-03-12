@@ -2,44 +2,55 @@
 
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+int main()
+{
+  ios::sync_with_stdio(0);
+  cin.tie(0);
 
-    list<int> list;
-    int N, K;
+  int N, K;
+  cin >> N >> K;
 
-    cin >> N >> K;
+  list<int> arr;
+  for (int i = 1; i <= N; i++)
+  {
+    arr.push_back(i);
+  }
 
-    for(int i = 1; i <= N; i++) {
-        list.push_back(i);
+  auto it = arr.begin();
+
+  vector<int> results;
+  while (!arr.empty())
+  {
+    for (int i = 0; i < K - 1; i++)
+    {
+      if (next(it) == arr.end())
+      {
+        it = arr.begin();
+      }
+      else
+      {
+        it++;
+      }
     }
 
-    auto pos = list.begin();
+    results.push_back(*it);
+    it = arr.erase(it);
+    if (it == arr.end())
+      it = arr.begin();
+  }
 
-    cout << "<";
+  cout << '<';
+  auto resultIt = results.begin();
 
-    for(int i = 0; i < K - 1; i++) {
-        pos++;
-        if(pos == list.end()) pos = list.begin();
-    }
+  while (resultIt != results.end())
+  {
+    cout << *resultIt;
 
-    cout << *pos;
-    pos = list.erase(pos);
-    if(pos == list.end()) pos = list.begin();
+    if (next(resultIt) != results.end())
+      cout << ", ";
 
-    while(!list.empty()) {
-        cout << ", ";
-        for(int i = 0; i < K - 1; i++) {
-            pos++;
-            if(pos == list.end()) pos = list.begin();
-        }
+    resultIt++;
+  }
 
-        cout << *pos;
-        pos = list.erase(pos);
-        if(pos == list.end()) pos = list.begin();
-    }
-
-    cout << ">";
-    return 0;
+  cout << '>';
 }
