@@ -2,53 +2,50 @@
 
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+int main()
+{
+  ios::sync_with_stdio(0);
+  cin.tie(0);
 
-    string s;
-    list<char> list;
-    int M;
-    char input;
+  string N;
+  cin >> N;
 
-    cin >> s;
+  list<char> str(N.begin(), N.end());
 
-    for(char a : s) {
-        list.push_back(a);
+  int M;
+  cin >> M;
+
+  list<char>::iterator it = str.end();
+  while (M--)
+  {
+    char command;
+    cin >> command;
+
+    if (command == 'L')
+    {
+      if (it != str.begin())
+        it--;
     }
-
-    cin >> M;
-
-    auto pos = list.end();
-
-    while(M > 0) {
-        cin >> input;
-
-        switch(input) {
-            case 'L':
-                if(pos != list.begin()) pos--;
-                break;
-            case 'D':
-                if(pos != list.end()) pos++;
-                break;
-            case 'P':
-                cin >> input;
-                list.insert(pos, input);
-                break;
-            case 'B':
-                if(pos != list.begin()) {
-                    pos = list.erase(--pos);
-                }
-                break;
-        }
-
-
-        M--;
+    else if (command == 'D')
+    {
+      if (it != str.end())
+        it++;
     }
-
-    for(char l : list) {
-        cout << l;
+    else if (command == 'B')
+    {
+      if (it != str.begin())
+        it = str.erase(prev(it));
     }
+    else
+    {
+      char text;
+      cin >> text;
+      str.insert(it, text);
+    }
+  }
 
-    return 0;
+  for (char c : str)
+  {
+    cout << c;
+  }
 }
